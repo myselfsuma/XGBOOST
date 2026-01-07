@@ -27,7 +27,7 @@ with mlflow.start_run():
     model.fit(X_train, y_train)
 
     preds = model.predict(X_test)
-    rmse = mean_squared_error(y_test, preds, squared=False)
+    rmse = mean_squared_error(y_test, preds)
 
     mlflow.log_params(params)
     mlflow.log_metric("rmse", rmse)
