@@ -7,6 +7,7 @@ from sklearn.metrics import mean_squared_error
 import os
 
 os.environ["DATABRICKS_TOKEN"] = os.environ.get("DATABRICKS_TOKEN")
+print(os.environ["DATABRICKS_TOKEN"])
 mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
 mlflow.set_registry_uri(os.environ["MLFLOW_TRACKING_URI"])
 mlflow.set_experiment("/Users/sumalatha.suresh.nayak@gmail.com/xgboost/XGBOOST")
