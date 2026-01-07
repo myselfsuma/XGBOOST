@@ -1,19 +1,22 @@
-name: XGBoost PROD Pipeline
+name: XGBoost CI/CD Pipeline
 
 on:
   push:
     branches:
+      - dev
+      - main
+  pull_request:
+    branches:
       - main
 
-env:
-  DATABRICKS_HOST: https://dbc-18e69d3a-43bf.cloud.databricks.com
-  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-  MLFLOW_TRACKING_URI: databricks
-  MLFLOW_REGISTRY_URI: databricks
-
 jobs:
-  train-register-promote:
+  train:
     runs-on: ubuntu-latest
+
+    env:
+      ENV: ${{ github.ref_name }}
+      MLFLOW_TRACKING_URI: file:./mlruns   # SAFE for Free Databricks
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,18 +30,12 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Debug Databricks env
-        run: |
-          echo "HOST=$DATABRICKS_HOST"
-          echo "TRACKING=$MLFLOW_TRACKING_URI"
-          echo "REGISTRY=$MLFLOW_REGISTRY_URI"
-          echo "TOKEN LENGTH=${#DATABRICKS_TOKEN}"
-          echo "TOKEN LENGTH=${{ secrets.DATABRICKS_TOKEN }}"
-
       - name: Train XGBoost model
         run: |
           python train_xgb.py
 
-      - name: Register & Promote model
-        run: |
-          python register_and_promote.py
+      - name: Upload MLflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns-${{ github.ref_name }}
+          path: mlruns/
