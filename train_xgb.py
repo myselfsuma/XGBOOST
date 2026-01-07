@@ -4,7 +4,9 @@ import mlflow
 import mlflow.xgboost
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+import os
 
+os.environ["DATABRICKS_TOKEN"] = os.environ.get("DATABRICKS_TOKEN")
 mlflow.set_experiment("/Users/sumalatha.suresh.nayak@gmail.com/xgboost/XGBOOST")
 
 df = pd.read_csv("data/train.csv")
