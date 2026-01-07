@@ -28,3 +28,6 @@ jobs:
       - name: Register & Promote model
         run: |
           python register_and_promote.py
+env:
+  MLFLOW_TRACKING_URI: https://dbc-18e69d3a-43bf.cloud.databricks.com
+  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}

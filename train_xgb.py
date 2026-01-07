@@ -5,7 +5,7 @@ import mlflow.xgboost
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
-mlflow.set_experiment("xgboost-prod-exp")
+mlflow.set_experiment("/Users/sumalatha.suresh.nayak@gmail.com/xgboost/XGBOOST")
 
 df = pd.read_csv("data/train.csv")
 X = df.drop("target", axis=1)
