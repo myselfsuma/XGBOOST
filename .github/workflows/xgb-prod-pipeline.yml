@@ -33,6 +33,7 @@ jobs:
           echo "TRACKING=$MLFLOW_TRACKING_URI"
           echo "REGISTRY=$MLFLOW_REGISTRY_URI"
           echo "TOKEN LENGTH=${#DATABRICKS_TOKEN}"
+          echo "TOKEN LENGTH=${{ secrets.DATABRICKS_TOKEN }}
 
       - name: Train XGBoost model
         run: |
