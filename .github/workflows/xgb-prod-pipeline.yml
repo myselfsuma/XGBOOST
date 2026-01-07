@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      
 env:
-  MLFLOW_TRACKING_URI: https://dbc-18e69d3a-43bf.cloud.databricks.com
-  MLFLOW_REGISTRY_URI: databricks
+  DATABRICKS_HOST: https://dbc-18e69d3a-43bf.cloud.databricks.com
   DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+  MLFLOW_TRACKING_URI: databricks
+  MLFLOW_REGISTRY_URI: databricks
 
 jobs:
   train-register-promote:
