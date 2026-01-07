@@ -6,8 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import os
 
-mlflow.set_tracking_uri("https://dbc-18e69d3a-43bf.cloud.databricks.com")
-mlflow.set_registry_uri("databricks")
+
 
 mlflow.set_experiment("/Users/sumalatha.suresh.nayak@gmail.com/xgboost/XGBOOST")
 
