@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 env:
   DATABRICKS_HOST: https://dbc-18e69d3a-43bf.cloud.databricks.com
   DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
@@ -26,6 +26,13 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Debug Databricks env
+        run: |
+          echo "HOST=$DATABRICKS_HOST"
+          echo "TRACKING=$MLFLOW_TRACKING_URI"
+          echo "REGISTRY=$MLFLOW_REGISTRY_URI"
+          echo "TOKEN LENGTH=${#DATABRICKS_TOKEN}"
 
       - name: Train XGBoost model
         run: |
